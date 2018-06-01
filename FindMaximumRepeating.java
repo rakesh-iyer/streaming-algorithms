@@ -1,7 +1,7 @@
 import java.util.*;
 
-class FindMaximumRepeating {
-	Map<Long,Long> findMaximumRepeatingMap(long ids[], int maxSize) {
+class HeavyHitters {
+	Map<Long,Long> findHeavyHittersMap(long ids[], int maxSize) {
 		Map<Long, Long> map = new HashMap<>();
 
 		for (long id : ids) {
@@ -27,7 +27,7 @@ class FindMaximumRepeating {
 		return map;
 	}
 
-	List<Long> topNRepeating(long ids[], int n) {
+	List<Long> topN(long ids[], int n) {
 		class Entry {
 			Long id;
 			Long value;
@@ -51,7 +51,7 @@ class FindMaximumRepeating {
 			}
 		}
 
-		Map<Long,Long> map = findMaximumRepeatingMap(ids, n*5);
+		Map<Long,Long> map = findHeavyHittersMap(ids, n*5);
 
 		// put the map into heap and remove top n elements.
 		PriorityQueue<Entry> pQueue = new PriorityQueue<>(1, new Entry(0L, 0L).new EntryComparator());
@@ -73,10 +73,10 @@ class FindMaximumRepeating {
 	}
 
 	public static void main(String args[]) {
-		FindMaximumRepeating fmr = new FindMaximumRepeating();
+		HeavyHitters hitters = new HeavyHitters();
 		long ids[] = {1,2,3,2,1,3,2,3};
 
-		for (Long id : fmr.topNRepeating(ids, 2)) {
+		for (Long id : hitters.topN(ids, 2)) {
 			System.out.println(id);
 		}
 	}
